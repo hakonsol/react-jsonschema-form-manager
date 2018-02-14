@@ -99,9 +99,6 @@
     "webpack-dev-server": "^2.7.1",
     "webpack-hot-middleware": "^2.19.1"
   },
-  "directories": {
-    "test": "test"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RxNT/react-jsonschema-form-manager.git"
