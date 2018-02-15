@@ -22,17 +22,17 @@ function DefaultErrorScreen({ error: { message } }) {
 
 let propTypes = {
   configPromise: PropTypes.shape({
-    then: PropTypes.func.isRequired,
+    then: PropTypes.func.isRequired
   }).isRequired,
   manager: PropTypes.shape({
     onChange: PropTypes.func.isRequired,
     submit: PropTypes.func.isRequired,
-    updateIfChanged: PropTypes.func.isRequired,
+    updateIfChanged: PropTypes.func.isRequired
   }).isRequired,
   updateStrategy: PropTypes.shape({
     onChange: PropTypes.func.isRequired,
-    stop: PropTypes.func.isRequired,
-  }).isRequired,
+    stop: PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default function withManager(
@@ -66,7 +66,7 @@ export default function withManager(
         this.state = {
           isLoading: true,
           isError: false,
-          configPromise: configPromise,
+          configPromise: configPromise
         };
         manager.onUpdate = this.handleUpdate;
       }
@@ -102,6 +102,11 @@ export default function withManager(
         }
       };
 
+      handleBlur = state => {
+        manager.onBlur(state);
+        this.updateExternal(state, this.props.onBlur);
+      };
+
       shouldComponentUpdate(nextProps, nextState) {
         let sameData = deepEqual(nextState.formData, this.formData);
         let sameState =
@@ -118,7 +123,7 @@ export default function withManager(
               isLoading: false,
               isEqual: false,
               config,
-              formData: config.formData,
+              formData: config.formData
             });
           })
           .catch(error => {
@@ -143,6 +148,7 @@ export default function withManager(
               {...configs}
               onSubmit={this.handleSubmit}
               onChange={this.handleChange}
+              onBlur={this.handleBlur}
             />
           );
         }
